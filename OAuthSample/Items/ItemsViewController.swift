@@ -10,6 +10,7 @@ import SafariServices
 
 final class ItemsViewController: UIViewController {
 
+    //MARK: - Properties
     @IBOutlet private weak var itemsTableView: UITableView! {
         didSet {
             itemsTableView.delegate = self
@@ -21,7 +22,7 @@ final class ItemsViewController: UIViewController {
 
     private var qiitaItems: [QiitaItemModel] = []
 
-
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Qiita記事一覧"
@@ -40,6 +41,7 @@ final class ItemsViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDelegate
 extension ItemsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -48,6 +50,7 @@ extension ItemsViewController: UITableViewDelegate {
         else { return }
 
         DispatchQueue.main.async {
+            //show Safari
             let safariVC = SFSafariViewController(url: url)
             safariVC.modalPresentationStyle = .fullScreen
             safariVC.dismissButtonStyle = .done
@@ -58,6 +61,7 @@ extension ItemsViewController: UITableViewDelegate {
     }
 }
 
+//MARK: - UITableViewDataSource
 extension ItemsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         qiitaItems.count
@@ -70,6 +74,4 @@ extension ItemsViewController: UITableViewDataSource {
 
         return cell
     }
-
-
 }

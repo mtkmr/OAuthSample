@@ -60,7 +60,7 @@ final class APIClient {
                     "\(URLParameterName.state.rawValue)=\(qiitaState)")!
     }
 
-    ///Post
+    ///認可コードを含んだリクエストで、アクセストークンを取得している
     func postAccessToken(code: String, completion: ((Result<QiitaAccessTokenModel, APIError>) -> Void)? = nil) {
         let endPoint = "/access_tokens"
         guard
@@ -75,8 +75,8 @@ final class APIClient {
                                    URLParameterName.clientSecret.rawValue: clientSecret,
                                    URLParameterName.code.rawValue: code]
         let jsonData = try! JSONSerialization.data(withJSONObject: body)
-        request.httpBody = jsonData
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData //Body
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type") //Header
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 completion?(.failure(APIError.postAccessToken))
@@ -98,7 +98,7 @@ final class APIClient {
         task.resume()
     }
 
-    ///Get Items
+    ///アクセストークンを含んだリクエストで、itemsを取得している
     func getItems(completion: ((Result<[QiitaItemModel], Error>) -> Void)? = nil) {
         let endPoint = "/authenticated_user/items"
         guard

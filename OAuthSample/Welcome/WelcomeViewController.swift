@@ -9,7 +9,7 @@ import UIKit
 
 final class WelcomeViewController: UIViewController {
 
-
+    //MARK: - Properties
     @IBOutlet private weak var signInButton: UIButton! {
         didSet {
             signInButton.layer.cornerRadius = 10
@@ -20,6 +20,7 @@ final class WelcomeViewController: UIViewController {
         }
     }
 
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Welcome"
@@ -30,6 +31,7 @@ final class WelcomeViewController: UIViewController {
         ]
     }
 
+    //MARK: - Functions
     func openUrl(_ url: URL) {
         guard let queryItems = URLComponents(string: url.absoluteString)?.queryItems,
               let code = queryItems.first(where: {$0.name == "code"})?.value,
@@ -55,6 +57,7 @@ final class WelcomeViewController: UIViewController {
     }
 }
 
+//MARK: - Private Extension
 @objc
 private extension WelcomeViewController {
     func didTapSignInButton(_ sender: UIButton) {
