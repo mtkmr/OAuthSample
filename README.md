@@ -14,3 +14,4 @@ A sample of fetching data from API using OAuth authentication flow
 # Requirement
  
  - You need to register your app with Qiita.
+ - Add **info.plist** file including **Client ID** and **Client Secret**.
