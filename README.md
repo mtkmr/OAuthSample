@@ -1,6 +1,6 @@
 # OAuthSample
 
-A sample of fetching data from Qiita using OAuth authentication flow
+A sample of fetching data from API using OAuth authentication flow
 
 # DEMO
 
